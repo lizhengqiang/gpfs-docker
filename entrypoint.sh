@@ -8,6 +8,8 @@ echo $API_PORT
 echo "init"
 
 /gpfs init 
+/gpfs config --json Addresses.API "/ip4/0.0.0.0/tcp/5001"
+/gpfs config --json Addresses.Gateway "/ip4/0.0.0.0/tcp/8080"
 /gpfs config --json API.HTTPHeaders.Access-Control-Allow-Origin "[\"http://$HOST_IP:$API_PORT\", \"http://localhost:3000\", \"http://127.0.0.1:5001\"]"
 /gpfs config --json API.HTTPHeaders.Access-Control-Allow-Methods "[\"PUT\", \"POST\"]"
 
