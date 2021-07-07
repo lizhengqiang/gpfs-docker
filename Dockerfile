@@ -1,11 +1,16 @@
-FROM golang:latest as prod
+FROM golang:1.15
+
+ADD ./gpfs /gpfs
+ADD ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /gpfs
+RUN chmod +x /entrypoint.sh
 
 WORKDIR /
-RUN chmod +x /app
 
+
+EXPOSE 5001
 EXPOSE 8080
+VOLUME /app/data
 
-# Config
-ENV CONFIG_PATH="./config/product.toml"
 
-CMD ["/app"]
+CMD ["/entrypoint.sh"]
